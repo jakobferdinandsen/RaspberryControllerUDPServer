@@ -15,8 +15,8 @@ l2Calibrated = False
 r2Calibrated = False
 calibrated = False
 
-UDP_IP = "192.168.10.168"
-UDP_PORT = "5555"
+UDP_IP = raw_input("IP: ")
+UDP_PORT = int(raw_input("PORT: "))
 
 while True:
     events = pygame.event.get()
@@ -41,6 +41,6 @@ while True:
 
             dataTranslator.interpretDataString(dataTranslator.createDataString(l3x, l3y, r3x, r3y, l2, r2))
 
+            dataString = dataTranslator.createDataString(l3x, l3y, r3x, r3y, l2, r2)
             sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            sock.sendto(dataTranslator.createDataString(l3x, l3y, r3x, r3y, l2, r2), (UDP_IP, UDP_PORT))
-
+            sock.sendto(dataString, (UDP_IP, UDP_PORT))

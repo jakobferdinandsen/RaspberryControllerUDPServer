@@ -21,7 +21,6 @@ class JoystickDataPacketTranslator():
 
     def interpretDataString(self, dataString):
         for dat in dataString.split():
-            print dat
             if dat.startswith("l3x"):
                 self.l3x = float(dat.split(":")[1])
             if dat.startswith("l3y"):
