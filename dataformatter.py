@@ -1,10 +1,20 @@
 class JoystickDataPacketTranslator():
-
+    #This is the left Joypad X axis(Primarily used for turning)
     l3x = None
+
+    #This is the left Joypad Y axis(Probably not needed)
     l3y = None
+
+    #This is the right Joypad X axis(Probably not needed)
     r3x = None
+
+    #This is the right Joypad X axis(Probably not needed)
     r3y = None
+
+    #This is the the left trigger(Primarily used for brakes)
     l2 = None
+
+    #This is the the right trigger(Primarily used as a gas pedal)
     r2 = None
 
 
