@@ -1,7 +1,7 @@
 import socket
 import dataformatter
 
-UDP_IP = "192.168.43.234"
+UDP_IP = "192.168.43.246"
 UDP_PORT = 5555
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
