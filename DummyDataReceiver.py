@@ -1,7 +1,7 @@
 import socket
 import dataformatter
 
-UDP_IP = "192.168.43.246"
+UDP_IP = "192.168.43.234"
 UDP_PORT = 5555
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -10,9 +10,13 @@ formatter = dataformatter.JoystickDataPacketTranslator()
 while True:
     data, addr = sock.recvfrom(1024)
     formatter.interpretDataString(data)
+    print '\n\n'
     print formatter.l3x
     print formatter.l3y
     print formatter.r3x
     print formatter.r3y
     print formatter.l2
     print formatter.r2
+    print formatter.triangle
+    print formatter.r1
+    print formatter.l1
