@@ -23,11 +23,11 @@ while True:
             l3y = j.get_axis(1) * 128  # -128-128 range
             r3x = j.get_axis(2) * 128  # -128-128 range
             r3y = j.get_axis(3) * 128  # -128-128 range
-            l2 = j.get_axis(12) * 256  # 0-256 range
-            r2 = j.get_axis(13) * 256  # 0-256 range
-            l1 = j.get_axis(14) # 0-1 range
-            r1 = j.get_axis(15) # 0-1 range
-            triangle = j.get_axis(16) # 0-1 range
+            l2 = j.get_axis(12)  # -1-1 range
+            r2 = j.get_axis(13)  # -1-1
+            l1 = j.get_axis(14)  # -1-1 range
+            r1 = j.get_axis(15)  # -1-1 range
+            triangle = j.get_axis(16)  # -1-1 range
 
             dataTranslator = dataformatter.JoystickDataPacketTranslator()
             dataString = dataTranslator.createDataString(l3x, l3y, r3x, r3y, l2, r2, l1, r1, triangle)
