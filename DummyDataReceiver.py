@@ -3,7 +3,7 @@ import socket
 import dataformatter
 
 # RECEIVER SETUP
-UDP_IP = "192.168.43.234"
+UDP_IP = "192.168.43.160"
 UDP_PORT = 5555
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -36,6 +36,12 @@ IO.setup(servoPIN12, IO.OUT)
 wheelPWM = IO.PWM(servoPIN12, 50)
 wheelPWM.start(5)
 
+# WHEEL POS CONTROL
+camPin = 17
+IO.setup(camPin, IO.OUT)
+camPWM = IO.PWM(camPin, 50)
+camPWM.start(5)
+
 # FUNCTIONS
 
 def backward(val):
@@ -50,51 +56,100 @@ def forward(val):
 
 def wheelpos(val):
     turnValue = val
-    if turnValue > 0 and turnValue <= 32:
-        # drej 1 tak til hoejre
-        x = 6
-        wheelPWM.ChangeDutyCycle(x)
+    # if turnValue > 0 and turnValue <= 32:
+    #     # drej 1 tak til hoejre
+    #     x = 5
+    #     wheelPWM.ChangeDutyCycle(x)
 
     if turnValue > 32 and turnValue <= 64:
         # drej 2 tak til hoejre
-        x = 7
+        x = 5
         wheelPWM.ChangeDutyCycle(x)
 
     if turnValue > 64 and turnValue <= 96:
         # drej 3 tak til hoejre
-        x = 8
+        x = 4.5
         wheelPWM.ChangeDutyCycle(x)
 
     if turnValue > 96:
         # drej 4 tak til hoejre
-        x = 9
+        x = 4
         wheelPWM.ChangeDutyCycle(x)
 
     if turnValue > -32 and turnValue < 32:
         # 5 = lige ud
-        x = 5
+        x = 6
         wheelPWM.ChangeDutyCycle(x)
 
         # Til venstre
-    if turnValue < 0 and turnValue >= -32:
-        # drej 1 tak til venstre
-        x = 4
-        wheelPWM.ChangeDutyCycle(x)
+    # if turnValue < 0 and turnValue >= -32:
+    #     # drej 1 tak til venstre
+    #     x = 6.5
+    #     wheelPWM.ChangeDutyCycle(x)
 
     if turnValue < -32 and turnValue >= -64:
         # drej 2 tak til venstre
-        x = 3
+        x = 7
         wheelPWM.ChangeDutyCycle(x)
 
     if turnValue < -64 and turnValue >= -96:
         # drej 3 tak til venstre
-        x = 2
+        x = 7.5
         wheelPWM.ChangeDutyCycle(x)
 
     if turnValue < -96:
         # drej 4 tak til venstre
-        x = 1
+        x = 8
         wheelPWM.ChangeDutyCycle(x)
+        
+def campos(val):
+    turnValue = val
+    # if turnValue > 0 and turnValue <= 32:
+    #     # drej 1 tak til hoejre
+    #     x = 5
+    #     wheelPWM.ChangeDutyCycle(x)
+
+    if turnValue > 32 and turnValue <= 64:
+        # drej 2 tak til hoejre
+        x = 5
+        camPWM.ChangeDutyCycle(x)
+
+    if turnValue > 64 and turnValue <= 96:
+        # drej 3 tak til hoejre
+        x = 4.5
+        camPWM.ChangeDutyCycle(x)
+
+    if turnValue > 96:
+        # drej 4 tak til hoejre
+        x = 4
+        camPWM.ChangeDutyCycle(x)
+
+    if turnValue > -32 and turnValue < 32:
+        # 5 = lige ud
+        x = 6
+        camPWM.ChangeDutyCycle(x)
+
+        # Til venstre
+    # if turnValue < 0 and turnValue >= -32:
+    #     # drej 1 tak til venstre
+    #     x = 6.5
+    #     camPWM.ChangeDutyCycle(x)
+
+    if turnValue < -32 and turnValue >= -64:
+        # drej 2 tak til venstre
+        x = 7
+        camPWM.ChangeDutyCycle(x)
+
+    if turnValue < -64 and turnValue >= -96:
+        # drej 3 tak til venstre
+        x = 7.5
+        camPWM.ChangeDutyCycle(x)
+
+    if turnValue < -96:
+        # drej 4 tak til venstre
+        x = 8
+        camPWM.ChangeDutyCycle(x)
+    
 
 
 
@@ -110,4 +165,5 @@ while True:
         backward((formatter.l2+1)*10)
 
     wheelpos(formatter.l3x)
+    campos(formatter.r3x)
 
